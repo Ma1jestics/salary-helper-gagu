@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о сотруднике</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Учёт выплат сотрудникам</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/employees">Сотрудники</a></li>
+                <li><a href="/extra-payments">Выплаты</a></li>
+                <li><a href="/upload">Загрузка данных</a></li>
+                <li><a href="/report">Отчёты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Информация о сотруднике</h2>
+        <table class="info-table">
+            <tr>
+                <td><strong>ФИО:</strong></td>
+                <td>{{ employee.name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Дата рождения:</strong></td>
+                <td>{{ employee.birthdate }}</td>
+            </tr>
+            <tr>
+                <td><strong>Подразделение:</strong></td>
+                <td>{{ employee.department }}</td>
+            </tr>
+            <tr>
+                <td><strong>Должность:</strong></td>
+                <td>{{ employee.position }}</td>
+            </tr>
+        </table>
+
+        <h2>Дополнительные выплаты</h2>
+        {% if payments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Сумма</th>
+                    <th>Тип документа</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.date }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.document_type }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Нет дополнительных выплат.</p>
+        {% endif %}
+
+        <a href="/employees" class="back-link">🔙 Вернуться к списку сотрудников</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Учёт выплат</p>
+    </footer>
+</body>
+</html>

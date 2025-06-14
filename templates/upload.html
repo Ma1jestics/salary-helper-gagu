@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка данных</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Загрузка данных</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/employees">Сотрудники</a></li>
+                <li><a href="/extra-payments">Выплаты</a></li>
+                <li><a href="/report">Отчёты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="upload-section">
+            <h2>Загрузите файл с данными</h2>
+            <div class="upload-container">
+                <form action="/upload/employees" method="post" enctype="multipart/form-data">
+                    <div class="file-input">
+                        <label for="employee-file">Загрузить сотрудников (Excel):</label>
+                        <input type="file" id="employee-file" name="file" accept=".xlsx, .xls" required>
+                    </div>
+                    <button type="submit" class="upload-button">Загрузить сотрудников</button>
+                </form>
+            </div>
+            <div class="upload-container">
+                <form action="/upload/payments" method="post" enctype="multipart/form-data">
+                    <div class="file-input">
+                        <label for="payment-file">Загрузить выплаты (Excel):</label>
+                        <input type="file" id="payment-file" name="file" accept=".xlsx, .xls" required>
+                    </div>
+                    <button type="submit" class="upload-button">Загрузить выплаты</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Учёт выплат</p>
+    </footer>
+</body>
+</html>

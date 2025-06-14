@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сотрудники</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Список сотрудников</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/extra-payments">Выплаты</a></li>
+                <li><a href="/upload">Загрузка данных</a></li>
+                <li><a href="/report">Отчёты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Форма поиска -->
+        <form method="get" action="/employees" class="search-form">
+            <input type="text" name="search" placeholder="Введите имя сотрудника" value="{{ search or '' }}">
+            <button type="submit">🔍 Найти</button>
+        </form>
+
+        <h2>Все сотрудники</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ФИО</th>
+                    <th>Дата рождения</th>
+                    <th>Отдел</th>
+                    <th>Должность</th>
+                    <th>Выплаты</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.id }}</td>
+                    <td><a href="/employees/{{ employee.id }}">{{ employee.name }}</a></td>
+                    <td>{{ employee.birthdate }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td><a href="/employee/{{ employee.id }}/payments">Посмотреть выплаты</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Учёт выплат</p>
+    </footer>
+</body>
+</html>

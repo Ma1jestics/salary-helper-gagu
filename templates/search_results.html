@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Результаты поиска для "{{ query }}"</h2>
+
+{% if employees %}
+<table>
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Отдел</th>
+            <th>Должность</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.position }}</td>
+            <td><a href="/employee/{{ employee.id }}/payments">Посмотреть выплаты</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Сотрудники не найдены.</p>
+{% endif %}
+
+{% endblock %}

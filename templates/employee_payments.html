@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Выплаты сотрудника: {{ employee.name }}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Выплаты сотрудника: {{ employee.name }}</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/employees">Сотрудники</a></li>
+                <li><a href="/extra-payments">Выплаты</a></li>
+                <li><a href="/upload">Загрузка данных</a></li>
+                <li><a href="/report">Отчёты</a></li>
+            </ul>
+        </nav>
+    </header>
+    <td>
+        <a href="/payments/{{ payment.id }}/edit" class="btn-edit">Редактировать</a>
+    </td>
+    
+    <main>
+        <h2>Все выплаты сотрудника {{ employee.name }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Дата</th>
+                    <th>Сумма</th>
+                    <th>Тип документа</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if payments %}
+                    {% for payment in payments %}
+                    <tr>
+                        <td>{{ payment.id }}</td>
+                        <td>{{ payment.date }}</td>
+                        <td>{{ payment.amount }}</td>
+                        <td>{{ payment.description }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">Нет данных о выплатах для этого сотрудника</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Учёт выплат</p>
+    </footer>
+</body>
+</html>
